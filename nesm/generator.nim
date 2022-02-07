@@ -99,7 +99,7 @@ proc genTypeChunk(immutableContext: Context, thetype: NimNode): TypeChunk =
         error("Only static objects can be nested into" &
               " static objects, but '" & plaintype &
               "' is not a static object!")
-      if declared_type.has_hidden:
+      if declared_type.has_hidden and not defined(noNesmHiddenWarnings):
         warning("Seems like the " & plaintype &
           " (at " & thetype.lineinfo() & ")" &
           " have hidden fields inside. This may lead to" &
